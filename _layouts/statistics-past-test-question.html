@@ -1,0 +1,43 @@
+{% assign examtag = page.dir | split: '/' | last | split: '-'%}
+{% assign year = examtag[1] | replace: '/', '' %}
+{% assign exam = examtag[0] %}{% capture page_title %}
+{% if page.name == 'index.md' %}{{ year }}년 {{ exam  | replace: 'h', '행정고시' | replace: 'i', '입법고시' }} 통계학
+{% else %}{{ year }}년 {{ exam  | replace: 'h', '행정고시' | replace: 'i', '입법고시' }} 통계학 제 {{ page.name | replace: '.md', '' }}문{% endif %}{% endcapture %}
+<h1><a href="{{ page.url }}/">{{ page_title }}</a></h1>
+{% if page.name == 'index.md' %}
+  {% for prob_page in site.pages %}
+    {% if prob_page.dir == page.url and prob_page.name != 'index.md' %}
+<h2>제 {{ prob_page.name | replace: '.md', '' }}문</h2>
+
+<figure>
+<!--[if lte IE 8]><img src="{{ prob_page.url | replace: 'html', 'png' }}"><![endif]-->
+<!--[if gt IE 8]><img src="{{ prob_page.url | replace: 'html', 'svg' }}"><![endif]-->
+<!--[if !IE]> --><img src="{{ prob_page.url | replace: '.html', '.svg'}}" style="box-sizing: border-box; width: 100%; border: 1px solid silver;"><!-- <![endif]-->
+</figure>
+
+{{ prob_page.content }}
+<footer class="entry-meta">{% assign tags = prob_page.prob_tags | split: ' ' %}
+  <span class="entry-tags">{% for tag in tags %}<a href="../#{{ tag }}" class="tag"><span class="term">{{ tag | replace: '_', ' ' }}</span></a>{% endfor %}</span>
+</footer>
+    {% endif %}
+  {% endfor %}
+
+<h2 class="noprint">문제지 내려받기</h2>
+<span class="center"><a href="../total/{{ exam }}-{{ year }}.pdf" class="btn btn-center noprint"><i class="fa fa-download"></i>
+  {{ exam }}-{{ year }}.pdf</a></span>
+
+{% else %}
+<figure>
+<!--[if lte IE 8]><img src="{{ page.url | replace: 'html', 'png' }}"><![endif]-->
+<!--[if gt IE 8]><img src="{{ page.url | replace: 'html', 'svg' }}"><![endif]-->
+<!--[if !IE]> --><img src="{{ page.url | replace: '.html', '.svg'}}" style="box-sizing: border-box; width: 100%; border: 1px solid silver;"><!-- <![endif]-->
+</figure>
+
+{{ content }}
+{% endif %}
+
+<footer class="entry-meta">{% assign tags = page.prob_tags | split: ' ' %}
+  <span class="entry-tags">{% for tag in tags %}<a href="../#{{ tag }}" class="tag"><span class="term">{{ tag | replace: '_', ' ' }}</span></a>{% endfor %}</span>
+</footer>
+
+</div><!-- /.entry-content -->
