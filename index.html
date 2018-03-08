@@ -11,34 +11,15 @@ title: 고등고시 통계학 기출문제 목록
 이제 제 노트 역시 죽은 자료가 되었기에 공개를 망설일 수 밖에 없었습니다.
 신림동 고시촌을 떠나온지 그리 오래 되지는 않았기에 그 기억을 살려 용기를 내고 이 자료를 공개합니다.
 
-## 고등고시 기출문제 ##
+<h2>고등고시 기출문제</h2>
 
 아직 <span style="color: red;">미완성</span>입니다.
 
-<h2>연도별 보기</h2>
-<select name="year" id="year">
+<h3>연도별 보기</h3>
+<select name="year" id="year" onChange="window.location.href='/' + this.value">
   <optgroup label="선택하세요.">
 {% for year in (1987..2015) reversed %}  <option value="h-{{year}}">{{year}}년 행정고시</option>
   <option value="i-{{year}}">{{year}}년 입법고시</option>
 {% endfor %}
   </optgroup>
 </select>
-
-<h2>태그별 보기</h2>
-{% for p in site.pages %}
-  {% if p.dir contains site.stat_dir and p.name !='index.md' %}
-    {% capture p_tags %}{{ p.prob_tags }}{% endcapture %}{% assign p_tags = p_tags | split: ' ' %}
-    {% for tag in p_tags %}
-      {% unless tags contains tag %}{% assign tags = tags | join: '|' | append: '|' | append: tag | split: '|' %}{% endunless %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-
-{% assign tags = tags | sort %}
-<ul class="no-bullet-list entry-meta">
-{% for tag in tags %}{% unless forloop.first %} <li style="display: inline;"><a href="#{{ tag }}" class="tag"><span>{{ tag | replace: '_', ' ' }}</span></a>{% endunless %}{% endfor %}
-</ul>
-
-<ul class="no-bullet-list">
-{% for tag in tags %}{% unless forloop.first %}<h3 id="{{ tag }}"><a href="#{{ tag }}">{{ tag | replace: '_', ' ' }}</a></h3><ul>{% for p in site.pages %}{% capture p_tags %}{{ p.prob_tags }}{% endcapture %}{% assign p_tags = p_tags | split: ' ' %}{% if p.dir contains site.stat_dir and p.name !='index.md' and p_tags contains tag %}{% assign examtag = p.dir | replace: site.stat_dir,'' | replace: 'h', '행정고시' | replace: 'i', '입법고시' | split: '-'%}{% assign year = examtag[1] | replace: '/', '' %}{% assign exam = examtag[0] %}{% assign dir = p.dir | append: '/' %}<li><a href="{{ p.url }}">{{ year }}년 {{ exam }} 통계학 제 {{ p.name | replace: '.md', '' }}문</a></li>{% endif %}{% endfor %}</ul>{% endunless %}{% endfor %}
-</ul>
