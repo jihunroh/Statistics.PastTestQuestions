@@ -1,3 +1,6 @@
+---
+layout: default
+---
 {% assign examtag = page.dir | split: '/' | last | split: '-'%}
 {% assign year = examtag[1] | replace: '/', '' %}
 {% assign exam = examtag[0] %}{% capture page_title %}
