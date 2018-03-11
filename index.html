@@ -2,7 +2,7 @@
 layout: page
 title: 고등고시 통계학 기출문제 목록
 ---
-
+<h2>들어가며</h2>
 이 곳의 자료는 제가 수험생활 동안 정리해놓았던 노트를 참고해 정리한 것입니다. 수험과목으로서 통계학은 답이 유일하고, 풀이 방법도 대개 단편적이어서 노트 정리와 활용이 꽤 용이했습니다.
 
 당시 노트를 활용하여 기출문제 풀이를 연도별로 열람할 수 있게 정리했고, 각 문제들이 수험 통계학의 어떤 부분에 위치하는 지를 키워드별로 정리하여 볼 수 있게 했습니다. 특히 빈출 키워드의 문제들을 일괄해 풀이해보면, 출제경향을 파악하기 쉬울 것입니다.
@@ -13,13 +13,40 @@ title: 고등고시 통계학 기출문제 목록
 
 <h2>고등고시 기출문제</h2>
 
-아직 <span style="color: red;">미완성</span>입니다.
+아래 표에서 굵은 글씨만 해설이 안성되었습니다.
 
-<h3>연도별 보기</h3>
-<select name="year" id="year" onChange="window.location.href='./' + this.value">
-  <optgroup label="선택하세요.">
-{% for year in (1987..2015) reversed %}  <option value="h-{{year}}">{{year}}년 행정고시</option>
-  <option value="i-{{year}}">{{year}}년 입법고시</option>
+<table summary="고등고시 제2차시험 통계학 기출문제의 연도별 목록">
+  <caption>연도별 목록</caption>
+  <thead>
+    <tr>
+      <th scope="col" rowspan="2">연도</th>
+      <th scope="col" colspan="2">문제</th>
+    </tr>
+    <tr>
+      <th>행정고시</th>
+      <th>입법고시</th>
+    </tr>
+  </thead>
+{% for year in (1987..2017) reversed %}
+  {% assign probs_year = site.StatisticsPastTestQuestions | where: "year", year %}
+  <tbody>
+    <tr>
+      <td>{{ year }}</td>
+      <td>
+          <a href="./h-{{year}}/">전체</a> - 
+          {% assign probs_h_year = probs_year | where: "testsort", "h" %}
+          {% for prob in probs_h_year %}
+          <a href="./h-{{year}}/{{ prob.slug }}.html">제{{ prob.slug }}문</a>  
+          {% endfor %}
+        </td>
+        <td>
+          <a href="./h-{{year}}/">전체</a> - 
+          {% assign probs_i_year = probs_year | where: "testsort", "i" %}
+          {% for prob in probs_i_year %}
+          <a href="./i-{{year}}/{{ prob.slug }}.html">제{{ prob.slug}}문</a> 
+          {% endfor %}
+        </td>
+  </tr>
+  </tbody>
 {% endfor %}
-  </optgroup>
-</select>
+</table>
