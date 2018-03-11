@@ -2,6 +2,7 @@
 layout: page
 title: 고등고시 통계학 기출문제 목록
 ---
+<!--
 <h2>들어가며</h2>
 이 곳의 자료는 제가 수험생활 동안 정리해놓았던 노트를 참고해 정리한 것입니다. 수험과목으로서 통계학은 답이 유일하고, 풀이 방법도 대개 단편적이어서 노트 정리와 활용이 꽤 용이했습니다.
 
@@ -10,13 +11,14 @@ title: 고등고시 통계학 기출문제 목록
 현업에 있는 지금은 이 자료를 다시 업데이트하기 무척 어렵습니다. 
 이제 제 노트 역시 죽은 자료가 되었기에 공개를 망설일 수 밖에 없었습니다.
 신림동 고시촌을 떠나온지 그리 오래 되지는 않았기에 그 기억을 살려 용기를 내고 이 자료를 공개합니다.
-아래 표에서 굵은 글씨만 해설이 안성되었습니다.
+아래 표에서 굵은 글씨만 해설이 완성되었습니다.
+-->
 
 <h2>연도별 목록</h2>
 
 <table summary="고등고시 제2차시험 통계학 기출문제의 연도별 목록">
   <caption>연도별 목록</caption>
-  <thead style="text-align: center;">
+  <thead>
     <tr>
       <th scope="col" rowspan="2">연도</th>
       <th scope="col" colspan="2">문제</th>
@@ -59,7 +61,7 @@ title: 고등고시 통계학 기출문제 목록
   <ul>
   {% for prob in site.StatisticsPastTestQuestions %}
     {% if prob.prob_tags contains tag %}
-    <li><a href="/{{ prob.url }}">{{ prob.year }}년 {{ prob.testsort  | replace: 'h', '행정고시' | replace: 'i', '입법고시' }} 제{{ prob.slug }}문</a></li>
+    <li><a href="{{ prob.url }}">{{ prob.year }}년 {{ prob.testsort  | replace: 'h', '행정고시' | replace: 'i', '입법고시' }} 제{{ prob.slug }}문</a></li>
     {% endif %}
   {% endfor %}
   </ul>
