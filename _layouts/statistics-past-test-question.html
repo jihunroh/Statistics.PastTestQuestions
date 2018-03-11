@@ -38,7 +38,7 @@ into the {body} of the default.hbs template -->
             <section class="post-full-content">
 {% if page.slug == 'index' %}
     {% for prob in site.StatisticsPastTestQuestions %}
-        {% if prob.year == year and prob.slug != 'index' %}
+        {% if prob.year == year and prob.testsort == exam and prob.slug != 'index' %}
 
         <h2>제 {{ prob.slug }}문</h2>
         <figure>
@@ -47,8 +47,11 @@ into the {body} of the default.hbs template -->
             <!--[if !IE]> --><img src="{{ prob.slug }}.svg" style="box-sizing: border-box; width: 100%; border: 1px solid silver;"><!-- <![endif]-->
         </figure>
         {{ prob.content }}
-        <footer class="entry-meta">{% assign tags = prob.prob_tags | split: ' ' %}
-            <span class="entry-tags">{% for tag in tags %}<a href="../#{{ tag }}" class="tag"><span class="term">{{ tag | replace: '_', ' ' }}</span></a>{% endfor %}</span>
+        <footer class="entry-meta">{% assign tags = prob.prob_tags %}
+            <h3>관련 키워드</h3>
+            <ul>
+                    {% for tag in tags %}<li><a href="../#{{ tag }}" class="tag">{{ tag | replace: '_', ' ' }}</a></li>{% endfor %}
+            </ul>
         </footer>          
         {% endif %}
     {% endfor %}
@@ -66,8 +69,11 @@ into the {body} of the default.hbs template -->
 
 {{ content }}
 
-<footer class="entry-meta">{% assign tags = page.prob_tags | split: ' ' %}
-    <span class="entry-tags">{% for tag in tags %}<a href="../#{{ tag }}" class="tag"><span class="term">{{ tag | replace: '_', ' ' }}</span></a>{% endfor %}</span>
+<footer class="entry-meta">{% assign tags = page.prob_tags %}
+    <h2>관련 키워드</h2>
+    <ul>
+        {% for tag in tags %}<li><a href="../#{{ tag }}" class="tag">{{ tag | replace: '_', ' ' }}</a></li>{% endfor %}
+    </ul>
 </footer>
 
 {% endif %}
