@@ -1,4 +1,6 @@
-$$ \begin{eqnarray}
+$$
+\require{cancel}
+\begin{eqnarray}
 U
 &=&
 \sum_{i=1}^n \left( \frac{ X_i - \mu }{ \sigma } \right)^2 = \sum_{i=1}^n \left( \frac{ X_i - \bar X + \bar X - \mu }{ \sigma } \right)^2
