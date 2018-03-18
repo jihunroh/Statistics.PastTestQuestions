@@ -42,7 +42,7 @@ title: 고등고시 통계학 기출문제 목록
         </td>
         <td>
           {% if year < 2003 %}-{% continue %}{% endif %}
-          <a href="./h-{{year}}/">전체</a> - 
+          <a href="./i-{{year}}/">전체</a> - 
           {% assign probs_i_year = probs_year | where: "testsort", "i" %}
           {% for prob in probs_i_year %}
           <a href="./i-{{year}}/{{ prob.slug }}.html">제{{ prob.slug}}문</a> 
