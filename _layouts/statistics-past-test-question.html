@@ -61,11 +61,11 @@ into the {body} of the default.hbs template -->
   {{ exam }}-{{ year }}.pdf</a></span>
 
 {% else %}
-<figure>
-<!--[if lte IE 8]><img src="{{ page.url | replace: 'html', 'png' }}"><![endif]-->
-<!--[if gt IE 8]><img src="{{ page.url | replace: 'html', 'svg' }}"><![endif]-->
-<!--[if !IE]> --><img src="{{ page.url }}.svg" style="box-sizing: border-box; width: 100%; border: 1px solid silver;"><!-- <![endif]-->
-</figure>
+        <figure>
+            <!--[if lte IE 8]><img src="{{ page.url | replace: 'html', 'png' }}"><![endif]-->
+            <!--[if gt IE 8]><img src="{{ page.url | replace: 'html', 'svg' }}"><![endif]-->
+            <!--[if !IE]> --><img src="{{ page.url | replace: 'html', 'svg' }}" style="box-sizing: border-box; width: 100%; border: 1px solid silver;"><!-- <![endif]-->
+        </figure>
 
 {{ content }}
 
